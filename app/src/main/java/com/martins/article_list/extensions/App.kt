@@ -13,4 +13,3 @@ val Application.component : AppComponent
         .appModule(AppModule(this))
         .remoteModule(RemoteModule())
         .build()
-//    get() = DaggerAppComponent
