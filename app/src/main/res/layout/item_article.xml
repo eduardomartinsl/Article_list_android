@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageViewArticle"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:minHeight="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textViewArticleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="textViewArticleTitle"
+        app:layout_constraintStart_toEndOf="@+id/imageViewArticle"
+        app:layout_constraintTop_toTopOf="@+id/imageViewArticle" />
+
+    <TextView
+        android:id="@+id/textViewArticleContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies porta felis ac eleifend. Suspendisse rutrum nulla ac enim facilisis condimentum eget sed neque. Sed rhoncus risus eget orci porttitor, id laoreet erat sagittis. Aenean magna massa, malesuada sit amet augue imperdiet, viverra consectetur turpis. Maecenas lacinia nec lectus eu sollicitudin. Suspendisse tristique massa fringilla elit dapibus, non sodales ante semper. Quisque eu sem maximus, blandit felis ac, gravida magna. Integer euismod enim sit amet aliquet gravida. Donec eu dapibus mi. In ullamcorper ante et odio commodo euismod. Phasellus nec eros lacinia, dictum libero vestibulum, porttitor massa. Sed et viverra nisi, aliquet laoreet leo. Nunc enim elit, tristique placerat augue vel, volutpat viverra justo. Nulla eros purus, pharetra eget turpis sit amet, fermentum bibendum mi."
+        app:layout_constraintBottom_toTopOf="@+id/textViewAuthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewArticleTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticleTitle" />
+
+    <TextView
+        android:id="@+id/textViewAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="textViewAuthor"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewArticle"
+        app:layout_constraintStart_toStartOf="@+id/textViewArticleTitle" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="textViewDate"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewArticle"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
