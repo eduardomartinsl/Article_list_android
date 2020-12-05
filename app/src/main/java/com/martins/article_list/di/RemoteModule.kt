@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Module
 class RemoteModule{
 
-    val BASE_URL = "https://blog.cheesecakelabs.com/challenge/"
+    val BASE_URL = "https://blog.cheesecakelabs.com/"
 
     @Provides
     @Singleton

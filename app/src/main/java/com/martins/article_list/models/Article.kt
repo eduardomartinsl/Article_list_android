@@ -6,6 +6,6 @@ data class Article(
     val authors: String,
     val date: String,
     val content: String,
-    val tags: Tag,
+    val tags: List<Tag>,
     val imageURL: String
 )
