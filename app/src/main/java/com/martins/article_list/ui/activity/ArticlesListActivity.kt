@@ -1,7 +1,7 @@
 package com.martins.article_list.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -26,20 +26,22 @@ class ArticlesListActivity : AppCompatActivity() {
 
         viewModel.getAllArticles()
 
-        viewModel.articlesList.observe(this, Observer {
-            val ArticleListAdapter =  ArticleListAdapter(it)
+        viewModel.isLoading.observe(this, Observer { isLoading ->
+            if(isLoading) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+        })
+
+        viewModel.articlesList.observe(this, Observer { articlesList ->
 
             val linearLayoutManager = LinearLayoutManager(this)
             linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+            recyclerViewArticles.layoutManager = linearLayoutManager
 
             val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
-
-
             recyclerViewArticles.addItemDecoration(divisor)
-            recyclerViewArticles.layoutManager = linearLayoutManager
+
+            val ArticleListAdapter =  ArticleListAdapter(this, articlesList)
             recyclerViewArticles.adapter = ArticleListAdapter
 
-            Toast.makeText(this, "Existe uma lista!!!", Toast.LENGTH_SHORT).show()
         })
     }
 }

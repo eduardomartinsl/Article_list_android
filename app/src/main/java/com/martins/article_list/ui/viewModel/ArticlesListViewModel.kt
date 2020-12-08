@@ -24,7 +24,7 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
     }
 
     private val _articlesList = MutableLiveData<List<Article>>()
-    public val articlesList : LiveData<List<Article>>
+    val articlesList : LiveData<List<Article>>
         get() = _articlesList
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -39,9 +39,7 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
                 val foundArticles = repository.getAllArticles()
                 _articlesList.postValue(foundArticles)
             }catch (E: Exception){
-
-                Log.e("erro", E.toString())
-
+                Log.e("erro: ", E.toString())
             }finally {
                 _isLoading.postValue(false)
 
@@ -49,5 +47,4 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
 
         }
     }
-
 }
