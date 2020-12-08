@@ -1,7 +1,11 @@
 package com.martins.article_list.ui.activity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -26,22 +30,40 @@ class ArticlesListActivity : AppCompatActivity() {
 
         viewModel.getAllArticles()
 
+        setRecyclerViewProperties()
+
         viewModel.isLoading.observe(this, Observer { isLoading ->
             if(isLoading) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
         })
 
-        viewModel.articlesList.observe(this, Observer { articlesList ->
-
-            val linearLayoutManager = LinearLayoutManager(this)
-            linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-            recyclerViewArticles.layoutManager = linearLayoutManager
-
-            val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
-            recyclerViewArticles.addItemDecoration(divisor)
-
-            val ArticleListAdapter =  ArticleListAdapter(this, articlesList)
-            recyclerViewArticles.adapter = ArticleListAdapter
-
+        viewModel.articleListAdapter.observe(this, Observer {articleListAdapter ->
+            recyclerViewArticles.adapter = articleListAdapter
         })
+    }
+
+    private fun setRecyclerViewProperties() {
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerViewArticles.layoutManager = linearLayoutManager
+
+        val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
+        recyclerViewArticles.addItemDecoration(divisor)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_articles, menu)
+        return true
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.MenuButtonFilter -> {
+                Toast.makeText(this, "open filter", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
