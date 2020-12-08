@@ -53,6 +53,12 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
         }
     }
 
+    fun sortArticles(filter: String){
+       when(filter){
+           //TODO: Parei aqui
+       }
+    }
+
     private fun fillAdapter(foundArticles: List<Article>) {
         val articleListAdapter = ArticleListAdapter(context, foundArticles)
         _articlesListAdapter.postValue(articleListAdapter)
