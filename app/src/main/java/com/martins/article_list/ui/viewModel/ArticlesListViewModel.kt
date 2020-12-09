@@ -26,8 +26,6 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
     }
 
     private val _articlesList = MutableLiveData<List<Article>>()
-    val articlesList : LiveData<List<Article>>
-        get() = _articlesList
 
     private val _articlesListAdapter = MutableLiveData<ArticleListAdapter>()
     val articleListAdapter: LiveData<ArticleListAdapter>
