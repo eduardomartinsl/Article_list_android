@@ -37,7 +37,6 @@ class ArticleListAdapter( val context: Context, private val articles: List<Artic
             it.title?.text = article.title
             it.authors?.text = article.authors
             it.date?.text = article.date
-            it.content?.text = article.content
             Picasso.get().load(article.imageURL).into(it.imageView)
 
             //Glide as a second option of image rendering
@@ -50,7 +49,6 @@ class ArticleListAdapter( val context: Context, private val articles: List<Artic
         val title = itemView.textViewArticleTitle
         val authors = itemView.textViewAuthor
         val date = itemView.textViewDate
-        val content = itemView.textViewArticleContent
         val imageView = itemView.imageViewArticle
     }
 }

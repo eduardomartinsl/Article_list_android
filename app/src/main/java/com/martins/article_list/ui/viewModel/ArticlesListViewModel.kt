@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.martins.article_list.adapters.ArticleListAdapter
 import com.martins.article_list.extensions.component
+import com.martins.article_list.helpers.Constants
 import com.martins.article_list.models.Article
 import com.martins.article_list.repository.ArticlesRepository
 import kotlinx.coroutines.launch
@@ -55,12 +56,21 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
 
     fun sortArticles(filter: String){
        when(filter){
-           //TODO: Parei aqui
+           Constants.AUTHOR ->{
+               fillAdapter(_articlesList.value?.sortedBy { it.authors.first()})
+           }
+           Constants.DATE ->{
+               fillAdapter(_articlesList.value?.sortedBy { it.date.first()})
+           }
+           Constants.TITLE ->{
+               fillAdapter(_articlesList.value?.sortedBy { it.title.first()})
+           }
+           else -> return
        }
     }
 
-    private fun fillAdapter(foundArticles: List<Article>) {
-        val articleListAdapter = ArticleListAdapter(context, foundArticles)
+    private fun fillAdapter(foundArticles: List<Article>?) {
+        val articleListAdapter = ArticleListAdapter(context, foundArticles!!)
         _articlesListAdapter.postValue(articleListAdapter)
     }
 }
