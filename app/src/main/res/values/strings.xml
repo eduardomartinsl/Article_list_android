@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Article_list</string>
+    <string name="app_name">News</string>
     <string name="filter_list">filterList</string>
 </resources>
