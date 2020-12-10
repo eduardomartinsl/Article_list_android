@@ -5,16 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import com.martins.article_list.R
+import com.martins.article_list.helpers.Constants.ARTICLE_KEY
+import com.martins.article_list.models.Article
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article_details.*
 
 class ArticleDetailFragment : Fragment(){
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        val gson = Gson()
+        val article = gson.fromJson(arguments?.getString(ARTICLE_KEY), Article::class.java)
 
-        textViewArticleTitle.text = "uepa vamo ve"
+        Picasso.get().load(article.imageURL).into(imageViewArticle)
+
+        textViewArticleTitle.text = article.title
+        textViewArticleContent.text = article.content
+        textViewAuthor.text = article.authors
+        textViewDate.text = article.date
 
     }
 
