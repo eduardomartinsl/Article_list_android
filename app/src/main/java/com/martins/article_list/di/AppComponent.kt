@@ -1,7 +1,7 @@
 package com.martins.article_list.di
 
 import com.martins.article_list.ui.activity.ArticlesActivity
-import com.martins.article_list.ui.viewModel.ArticlesListViewModel
+import com.martins.article_list.ui.viewModel.ArticlesViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,5 +13,5 @@ interface AppComponent {
     fun inject(activity: ArticlesActivity)
 
     //viewModels
-    fun inject(viewModel: ArticlesListViewModel)
+    fun inject(viewModel: ArticlesViewModel)
 }

@@ -8,10 +8,8 @@ class ArticlesRepository @Inject constructor(
 private val service : ArticlesService
 ) {
     suspend fun getAllArticles() : List<Article>{
-        val articles = service.getAllArticles()
-        articles.forEach{
-            it.wasRead = false
+        return service.getAllArticles().onEach { article ->
+            article.wasRead = false
         }
-        return articles
     }
 }

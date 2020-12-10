@@ -1,5 +1,6 @@
 package com.martins.article_list.di
 
+import com.martins.article_list.BuildConfig
 import com.martins.article_list.services.ArticlesService
 import dagger.Module
 import dagger.Provides
@@ -10,12 +11,10 @@ import javax.inject.Singleton
 @Module
 class RemoteModule{
 
-    val BASE_URL = "https://blog.cheesecakelabs.com/"
-
     @Provides
     @Singleton
     fun provideRetrofit() = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.API_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

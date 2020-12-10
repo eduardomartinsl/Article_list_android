@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">News</string>
     <string name="filter_list">filterList</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mark_as_unread">Mark as unread</string>
+    <string name="article_image">Article Image</string>
 </resources>

@@ -14,7 +14,7 @@
             android:id="@+id/imageViewArticle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="80px"
+            android:minHeight="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="textView"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,15 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed velit velit. Quisque fringilla pulvinar mauris eget dapibus. Aenean dictum ligula id nibh vulputate ornare. Ut rhoncus mattis ultrices. Vestibulum vulputate justo eu nisi semper, non vestibulum eros sollicitudin. Pellentesque ante risus, egestas nec quam eget, pellentesque egestas urna. Donec ex mauris, condimentum et risus eget, venenatis rhoncus velit.
-
-Etiam ut lorem eget odio pretium posuere nec ut dui. Phasellus orci velit, tristique at facilisis efficitur, interdum non eros. Quisque commodo blandit quam in commodo. Phasellus nulla nulla, facilisis ut pharetra sit amet, fermentum ut massa. Donec eleifend ligula eget mi luctus convallis at at quam. In euismod rutrum nisl. Donec auctor ex sapien, nec interdum urna consectetur sit amet. Aliquam id fermentum lectus. Integer lacinia dolor et felis accumsan fermentum. Fusce semper erat pretium ex dictum, ut cursus nunc fringilla. Nam pharetra consequat vehicula. Maecenas iaculis leo nunc, in viverra lectus imperdiet at. Nullam ut ante aliquam, lacinia nibh a, lobortis eros. Morbi id felis ante. Ut congue tincidunt risus non dictum.
-
-Phasellus tortor mauris, tempor eu mi ut, hendrerit interdum sem. Fusce bibendum erat in lectus placerat, sed ornare lectus viverra. Integer et mollis dolor. Duis ornare eget orci ac tempus. Morbi vel enim consequat, imperdiet risus a, dignissim felis. Aenean vel pellentesque lectus. Ut non congue magna. Suspendisse nisl neque, rutrum ac pulvinar in, interdum eu lectus. Curabitur nisl arcu, efficitur ac magna eu, tristique tristique neque. Quisque sed metus sem. Proin luctus nisl nibh, sit amet luctus ipsum lobortis ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce at tellus et sapien tempus rhoncus.
-
-Nullam ultrices pellentesque risus non tempus. Proin at rutrum nunc, ornare semper quam. Maecenas ultricies a est in vehicula. Etiam maximus finibus mi non pulvinar. Duis in dolor ut tortor hendrerit ullamcorper vitae a ex. Aenean semper eu est ac suscipit. Vivamus in libero nulla. Praesent bibendum vestibulum ligula ac lobortis. Proin quis commodo purus. Pellentesque at sodales nisi, vel suscipit mauris. Curabitur risus ipsum, varius sit amet libero at, mattis ornare velit. Integer tortor lectus, molestie tincidunt turpis a, condimentum ullamcorper lorem. Ut porttitor erat a laoreet pharetra. Ut quis sapien at tellus suscipit placerat in lobortis tortor. Aenean non ultrices velit, at tempus ipsum.
-
-Donec sit amet pellentesque orci. Phasellus sed mollis enim, quis volutpat orci. Sed maximus maximus ligula, eu interdum felis imperdiet eget. Sed id mauris justo. Maecenas quam risus, facilisis quis ante id, aliquet porta orci. Nulla sed arcu aliquet, sodales diam nec, vulputate augue. Etiam imperdiet mollis lectus, quis lobortis leo faucibus ac. Cras hendrerit lectus enim, sed vulputate odio cursus a. Donec tincidunt non sapien sed faucibus. Nulla eget metus eu odio aliquet elementum. Vivamus id erat in enim suscipit vehicula nec sed nulla. Curabitur nec sem dapibus, varius lorem in, facilisis ipsum. Morbi tristique odio sed felis molestie fermentum. Ut vitae placerat leo, eu euismod ligula. Donec a ipsum congue, eleifend mauris non, aliquet urna. In rutrum vestibulum tristique."
             app:layout_constraintBottom_toTopOf="@+id/textViewAuthor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +45,6 @@ Donec sit amet pellentesque orci. Phasellus sed mollis enim, quis volutpat orci.
             android:id="@+id/textViewAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textViewDate"
@@ -65,7 +54,6 @@ Donec sit amet pellentesque orci. Phasellus sed mollis enim, quis volutpat orci.
             android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

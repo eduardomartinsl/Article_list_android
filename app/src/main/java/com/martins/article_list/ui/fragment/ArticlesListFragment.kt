@@ -16,13 +16,13 @@ import com.martins.article_list.adapters.ArticleListAdapter
 import com.martins.article_list.helpers.Constants
 import com.martins.article_list.interfaces.CellClickListener
 import com.martins.article_list.models.Article
-import com.martins.article_list.ui.viewModel.ArticlesListViewModel
+import com.martins.article_list.ui.viewModel.ArticlesViewModel
 import kotlinx.android.synthetic.main.fragment_articles_list.*
 
 
 class ArticlesListFragment : Fragment(), CellClickListener{
 
-    private val viewModel by viewModels<ArticlesListViewModel>()
+    private val viewModel by viewModels<ArticlesViewModel>()
     private val navController by lazy {
         findNavController()
     }

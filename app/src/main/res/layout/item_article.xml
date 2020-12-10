@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/imageViewArticle"
@@ -13,7 +16,8 @@
         android:minHeight="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/article_image" />
 
     <TextView
         android:id="@+id/textViewArticleTitle"
@@ -21,7 +25,6 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"
-        android:text="textViewArticleTitle"
         app:layout_constraintBottom_toTopOf="@+id/textViewAuthor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewArticle"
@@ -35,7 +38,6 @@
         android:ellipsize="end"
         android:maxLength="18"
         android:maxLines="1"
-        android:text="authors"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewArticle"
         app:layout_constraintEnd_toStartOf="@+id/textViewDate"
         app:layout_constraintStart_toStartOf="@+id/textViewArticleTitle" />
@@ -44,7 +46,6 @@
         android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="textViewDate"
         app:layout_constraintBottom_toBottomOf="@+id/textViewAuthor"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

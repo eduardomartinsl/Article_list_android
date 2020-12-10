@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.martins.article_list.extensions.component
-import com.martins.article_list.helpers.Constants
 import com.martins.article_list.helpers.Constants.AUTHOR
 import com.martins.article_list.helpers.Constants.DATE
 import com.martins.article_list.helpers.Constants.TITLE
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
-class ArticlesListViewModel (application: Application) : AndroidViewModel(application){
+class ArticlesViewModel (application: Application) : AndroidViewModel(application){
 
     @Inject lateinit var repository: ArticlesRepository
 
