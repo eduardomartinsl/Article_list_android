@@ -33,6 +33,9 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
     private val _defaultArticlesList = MutableLiveData<List<Article>>()
 
     fun getAllArticles(){
+
+        if(!_articlesList.value.isNullOrEmpty()) return
+
         viewModelScope.launch {
             _isLoading.postValue(true)
 

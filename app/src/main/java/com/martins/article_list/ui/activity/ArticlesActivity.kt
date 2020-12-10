@@ -6,7 +6,7 @@ import com.martins.article_list.R
 import com.martins.article_list.extensions.component
 
 
-class ArticlesListActivity : AppCompatActivity() {
+class ArticlesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

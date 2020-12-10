@@ -14,7 +14,6 @@ import com.google.gson.Gson
 import com.martins.article_list.R
 import com.martins.article_list.adapters.ArticleListAdapter
 import com.martins.article_list.helpers.Constants
-import com.martins.article_list.helpers.Constants.ARTICLE_KEY
 import com.martins.article_list.interfaces.CellClickListener
 import com.martins.article_list.models.Article
 import com.martins.article_list.ui.viewModel.ArticlesListViewModel
@@ -63,14 +62,10 @@ class ArticlesListFragment : Fragment(), CellClickListener{
     }
 
     private fun navigateToArticleDetail(article: Article) {
+        val direction = ArticlesListFragmentDirections.
+            actionArticleListToArticleDetailFragment(Gson().toJson(article))
 
-        val bundle = Bundle()
-        val gson = Gson()
-
-        val serializedArticle = gson.toJson(article)
-        bundle.putString(ARTICLE_KEY, serializedArticle)
-
-        navController.navigate(R.id.articleDetailFragment, bundle)
+        navController.navigate(direction)
 
     }
 

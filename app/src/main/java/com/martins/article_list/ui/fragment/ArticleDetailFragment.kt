@@ -5,19 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.google.gson.Gson
 import com.martins.article_list.R
-import com.martins.article_list.helpers.Constants.ARTICLE_KEY
 import com.martins.article_list.models.Article
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article_details.*
 
 class ArticleDetailFragment : Fragment(){
 
+    private val navArguments by navArgs<ArticleDetailFragmentArgs>()
+
+    private val article by lazy {
+        Gson().fromJson(navArguments.article, Article::class.java)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val article = Gson().fromJson(arguments?.getString(ARTICLE_KEY), Article::class.java)
 
         Picasso.get().load(article.imageURL).into(imageViewArticle)
 
