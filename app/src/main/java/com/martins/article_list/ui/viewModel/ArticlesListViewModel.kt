@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.martins.article_list.adapters.ArticleListAdapter
 import com.martins.article_list.extensions.component
 import com.martins.article_list.helpers.Constants
 import com.martins.article_list.models.Article
@@ -19,21 +18,19 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
 
     @Inject lateinit var repository: ArticlesRepository
 
-    private val context = getApplication<Application>().applicationContext
-
     init {
         getApplication<Application>().component.inject(this)
     }
 
     private val _articlesList = MutableLiveData<List<Article>>()
-
-    private val _articlesListAdapter = MutableLiveData<ArticleListAdapter>()
-    val articleListAdapter: LiveData<ArticleListAdapter>
-        get() = _articlesListAdapter
+    val articlesList: LiveData<List<Article>>
+        get() = _articlesList
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
         get() = _isLoading
+
+    private val _defaultArticlesList = MutableLiveData<List<Article>>()
 
     fun getAllArticles(){
         viewModelScope.launch {
@@ -41,8 +38,8 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
 
             try {
                 val foundArticles = repository.getAllArticles()
-                fillAdapter(foundArticles)
                 _articlesList.postValue(foundArticles)
+                _defaultArticlesList.postValue(foundArticles)
             }catch (E: Exception){
                 Log.e("erro: ", E.toString())
             }finally {
@@ -55,20 +52,16 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
     fun sortArticles(filter: String){
        when(filter){
            Constants.AUTHOR ->{
-               fillAdapter(_articlesList.value?.sortedBy { it.authors.first()})
+               _articlesList.postValue(_defaultArticlesList.value?.sortedBy { it.authors.first()})
            }
            Constants.DATE ->{
-               fillAdapter(_articlesList.value?.sortedBy { it.date.first()})
+               _articlesList.postValue(_defaultArticlesList.value?.sortedBy { it.date.first()})
            }
            Constants.TITLE ->{
-               fillAdapter(_articlesList.value?.sortedBy { it.title.first()})
+               val sortedBy = _defaultArticlesList.value?.sortedBy { it.title.first() }
+               _articlesList.postValue(sortedBy)
            }
            else -> return
        }
-    }
-
-    private fun fillAdapter(foundArticles: List<Article>?) {
-        val articleListAdapter = ArticleListAdapter(context, foundArticles!!)
-        _articlesListAdapter.postValue(articleListAdapter)
     }
 }

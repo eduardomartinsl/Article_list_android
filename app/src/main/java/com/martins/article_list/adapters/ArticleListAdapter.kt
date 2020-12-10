@@ -1,21 +1,20 @@
 package com.martins.article_list.adapters
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.martins.article_list.R
+import com.martins.article_list.interfaces.CellClickListener
 import com.martins.article_list.models.Article
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article.view.*
 
-class ArticleListAdapter( val context: Context, private val articles: List<Article>) :
+class ArticleListAdapter(private val articles: List<Article>,
+                         private val cellClickListener: CellClickListener
+) :
     RecyclerView.Adapter<ArticleListAdapter.ViewHolder>(){
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,19 +36,25 @@ class ArticleListAdapter( val context: Context, private val articles: List<Artic
             it.title?.text = article.title
             it.authors?.text = article.authors
             it.date?.text = article.date
-            Picasso.get().load(article.imageURL).into(it.imageView)
 
+            Picasso.get().load(article.imageURL).into(it.imageView)
             //Glide as a second option of image rendering
 //            Glide.with(context).load(article.imageURL).diskCacheStrategy(DiskCacheStrategy.ALL).into(it.imageView)
 
+            it.itemView.setOnClickListener{
+                cellClickListener.onCellClickListener(article)
+            }
         }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
         val title = itemView.textViewArticleTitle
         val authors = itemView.textViewAuthor
         val date = itemView.textViewDate
         val imageView = itemView.imageViewArticle
+
     }
 }
+
 
