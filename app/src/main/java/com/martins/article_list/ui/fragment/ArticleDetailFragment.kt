@@ -17,8 +17,7 @@ class ArticleDetailFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val gson = Gson()
-        val article = gson.fromJson(arguments?.getString(ARTICLE_KEY), Article::class.java)
+        val article = Gson().fromJson(arguments?.getString(ARTICLE_KEY), Article::class.java)
 
         Picasso.get().load(article.imageURL).into(imageViewArticle)
 
@@ -26,14 +25,13 @@ class ArticleDetailFragment : Fragment(){
         textViewArticleContent.text = article.content
         textViewAuthor.text = article.authors
         textViewDate.text = article.date
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_article_details, container, false)
     }
 }

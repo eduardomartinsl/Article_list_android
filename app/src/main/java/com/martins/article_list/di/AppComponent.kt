@@ -16,7 +16,4 @@ interface AppComponent {
 
     //viewModels
     fun inject(viewModel: ArticlesListViewModel)
-
-    //fragments
-    fun inject(fragment: ArticlesListFragment)
 }

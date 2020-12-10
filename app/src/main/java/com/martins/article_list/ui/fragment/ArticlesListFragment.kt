@@ -1,10 +1,9 @@
 package com.martins.article_list.ui.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,11 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.martins.article_list.R
 import com.martins.article_list.adapters.ArticleListAdapter
+import com.martins.article_list.helpers.Constants
 import com.martins.article_list.helpers.Constants.ARTICLE_KEY
 import com.martins.article_list.interfaces.CellClickListener
 import com.martins.article_list.models.Article
 import com.martins.article_list.ui.viewModel.ArticlesListViewModel
 import kotlinx.android.synthetic.main.fragment_articles_list.*
+
 
 class ArticlesListFragment : Fragment(), CellClickListener{
 
@@ -27,8 +28,14 @@ class ArticlesListFragment : Fragment(), CellClickListener{
         findNavController()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_articles_list, container, false)
@@ -36,28 +43,18 @@ class ArticlesListFragment : Fragment(), CellClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getAllArticles()
-
         setRecyclerViewProperties()
 
+        viewModel.getAllArticles()
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
-            if(isLoading) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+            if (isLoading) progressBar.visibility = View.VISIBLE else progressBar.visibility =
+                View.GONE
         })
 
         viewModel.articlesList.observe(viewLifecycleOwner, Observer { articlesList ->
             val adapter = ArticleListAdapter(articlesList, this)
             recyclerViewArticles.adapter = adapter
         })
-    }
-
-    private fun setRecyclerViewProperties() {
-        val linearLayoutManager = LinearLayoutManager(context)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerViewArticles.layoutManager = linearLayoutManager
-
-        val divisor = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-        recyclerViewArticles.addItemDecoration(divisor)
     }
 
     override fun onCellClickListener(article: Article) {
@@ -75,6 +72,39 @@ class ArticlesListFragment : Fragment(), CellClickListener{
 
         navController.navigate(R.id.articleDetailFragment, bundle)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_articles, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val filterTipes = arrayOf(Constants.AUTHOR, Constants.DATE, Constants.TITLE)
+        return when (item.itemId){
+            R.id.MenuButtonFilter -> {
+                val alert = AlertDialog.Builder(requireContext())
+                alert.setSingleChoiceItems(
+                    filterTipes,
+                    -1
+                ) { dialog: DialogInterface?, which: Int ->
+                    viewModel.sortArticles(filterTipes[which])
+                    dialog?.dismiss()
+                }
+                alert.show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setRecyclerViewProperties() {
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerViewArticles.layoutManager = linearLayoutManager
+
+        val divisor = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+        recyclerViewArticles.addItemDecoration(divisor)
     }
 
 }
