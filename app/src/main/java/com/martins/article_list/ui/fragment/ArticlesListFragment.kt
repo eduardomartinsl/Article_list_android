@@ -45,6 +45,7 @@ class ArticlesListFragment : Fragment(), CellClickListener{
         setRecyclerViewProperties()
 
         viewModel.getAllArticles()
+
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
             if (isLoading) progressBar.visibility = View.VISIBLE else progressBar.visibility =
                 View.GONE
@@ -57,7 +58,7 @@ class ArticlesListFragment : Fragment(), CellClickListener{
     }
 
     override fun onCellClickListener(article: Article) {
-        article.wasRead = false
+        article.wasRead = true
         navigateToArticleDetail(article)
     }
 

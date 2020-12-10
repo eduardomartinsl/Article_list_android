@@ -8,6 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.martins.article_list.extensions.component
 import com.martins.article_list.helpers.Constants
+import com.martins.article_list.helpers.Constants.AUTHOR
+import com.martins.article_list.helpers.Constants.DATE
+import com.martins.article_list.helpers.Constants.TITLE
 import com.martins.article_list.models.Article
 import com.martins.article_list.repository.ArticlesRepository
 import kotlinx.coroutines.launch
@@ -30,8 +33,6 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    private val _defaultArticlesList = MutableLiveData<List<Article>>()
-
     fun getAllArticles(){
 
         if(!_articlesList.value.isNullOrEmpty()) return
@@ -42,7 +43,6 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
             try {
                 val foundArticles = repository.getAllArticles()
                 _articlesList.postValue(foundArticles)
-                _defaultArticlesList.postValue(foundArticles)
             }catch (E: Exception){
                 Log.e("erro: ", E.toString())
             }finally {
@@ -54,15 +54,14 @@ class ArticlesListViewModel (application: Application) : AndroidViewModel(applic
 
     fun sortArticles(filter: String){
        when(filter){
-           Constants.AUTHOR ->{
-               _articlesList.postValue(_defaultArticlesList.value?.sortedBy { it.authors.first()})
+           AUTHOR ->{
+               _articlesList.postValue(_articlesList.value?.sortedBy { it.authors.first()})
            }
-           Constants.DATE ->{
-               _articlesList.postValue(_defaultArticlesList.value?.sortedBy { it.date.first()})
+           DATE ->{
+               _articlesList.postValue(_articlesList.value?.sortedBy { it.date.first()})
            }
-           Constants.TITLE ->{
-               val sortedBy = _defaultArticlesList.value?.sortedBy { it.title.first() }
-               _articlesList.postValue(sortedBy)
+           TITLE ->{
+               _articlesList.postValue(_articlesList.value?.sortedBy { it.title.first() })
            }
            else -> return
        }
