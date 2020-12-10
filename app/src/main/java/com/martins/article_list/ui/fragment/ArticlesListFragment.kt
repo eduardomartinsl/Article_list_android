@@ -23,10 +23,8 @@ import kotlinx.android.synthetic.main.fragment_articles_list.*
 class ArticlesListFragment : Fragment(), CellClickListener{
 
     private val viewModel by viewModels<ArticlesListViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private val navController by lazy {
+        findNavController()
     }
 
     override fun onCreateView(
@@ -63,12 +61,12 @@ class ArticlesListFragment : Fragment(), CellClickListener{
     }
 
     override fun onCellClickListener(article: Article) {
+        article.wasRead = false
         navigateToArticleDetail(article)
     }
 
     private fun navigateToArticleDetail(article: Article) {
 
-        val navController = findNavController()
         val bundle = Bundle()
         val gson = Gson()
 

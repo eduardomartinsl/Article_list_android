@@ -10,5 +10,6 @@ data class Article(
     val content: String,
     val tags: List<Tag>,
     @SerializedName("image_url")
-    val imageURL: String
+    val imageURL: String,
+    var wasRead: Boolean
 )

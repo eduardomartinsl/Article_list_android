@@ -5,10 +5,13 @@ import com.martins.article_list.services.ArticlesService
 import javax.inject.Inject
 
 class ArticlesRepository @Inject constructor(
-    private val service : ArticlesService
+private val service : ArticlesService
 ) {
     suspend fun getAllArticles() : List<Article>{
-        val response = service.getAllArticles()
-        return response
+        val articles = service.getAllArticles()
+        articles.forEach{
+            it.wasRead = false
+        }
+        return articles
     }
 }

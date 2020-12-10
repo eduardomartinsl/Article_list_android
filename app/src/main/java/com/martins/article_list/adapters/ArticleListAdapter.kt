@@ -1,8 +1,11 @@
 package com.martins.article_list.adapters
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.martins.article_list.R
@@ -33,13 +36,17 @@ class ArticleListAdapter(private val articles: List<Article>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = articles[position]
         holder.let {
-            it.title?.text = article.title
-            it.authors?.text = article.authors
-            it.date?.text = article.date
+            it.title.text = article.title
+            it.authors.text = article.authors
+            it.date.text = article.date
+
+            if(!article.wasRead){
+                it.title.setTypeface(null, Typeface.BOLD)
+            }
 
             Picasso.get().load(article.imageURL).into(it.imageView)
-            //Glide as a second option of image rendering
-//            Glide.with(context).load(article.imageURL).diskCacheStrategy(DiskCacheStrategy.ALL).into(it.imageView)
+            // Glide as a second option of image rendering
+            // Glide.with(context).load(article.imageURL).diskCacheStrategy(DiskCacheStrategy.ALL).into(it.imageView)
 
             it.itemView.setOnClickListener{
                 cellClickListener.onCellClickListener(article)
@@ -49,10 +56,10 @@ class ArticleListAdapter(private val articles: List<Article>,
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        val title = itemView.textViewArticleTitle
-        val authors = itemView.textViewAuthor
-        val date = itemView.textViewDate
-        val imageView = itemView.imageViewArticle
+        val title: TextView = itemView.textViewArticleTitle
+        val authors: TextView = itemView.textViewAuthor
+        val date: TextView = itemView.textViewDate
+        val imageView: ImageView = itemView.imageViewArticle
 
     }
 }
