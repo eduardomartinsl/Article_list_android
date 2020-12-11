@@ -9,10 +9,10 @@ import com.martins.article_list.models.Article
 
 @Dao
 interface ArticlesDao {
-    @Query("")
+    @Query("SELECT * from articles")
     suspend fun getAllArticles() : List<ArticleEntity>
 
-    @Query("")
+    @Query("Select * from articles where title = :title")
     suspend fun getArticleByTitle(title: String) : ArticleEntity
 
     @Insert(onConflict = REPLACE)
